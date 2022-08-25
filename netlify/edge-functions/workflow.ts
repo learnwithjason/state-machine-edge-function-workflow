@@ -2,7 +2,7 @@ import { createMachine } from 'https://cdn.skypack.dev/xstate';
 import { connect } from 'https://unpkg.com/@planetscale/database@^0.6.1';
 
 const trafficLightMachine =
-  /** @xstate-layout N4IgpgJg5mDOIC5QBcBOBDAZpglgYwBkcoALZAOilTDADsBiAOQFEANAFUVAAcB7WHMhy9aXEAA9EAWgCMc8gA4FMgOwKAbDICsAZgAsAThkAGAEwAaEAE9EKneU1bDenceM716vQoC+Py2hYuITEZORWYAA2kbwA7kxsnEggfAJCImI2CKZ65AZKpmp6KlrqKnrqOjqWkggyyg5aCkYGpnJVpSp+ARjY+ESkFNQQCRxiqYLCoslZOXkFRSVlFQY1iHqG5MXGKqYKxlolhjJ6fv4gtLwQcGKBfSGDlNR04-yTGcm1Um3qigpOBh0rVU6l0Wkss1y+QUhQUxU6FXU3RAd2CAzCEWicVeaSmYlqbXIKjMe2MChK2j07ghiDm0Nh8OWlR0yNR-VCQ0gOPe01ABIMKnIbV2VRUBm8ugUNOyUIWcKW5XUBlZvTRHO56V5EmkOWMfwBQOFoJ04Os0gqeQMVtBpgBWlMOm0Zx8QA */
+  /** @xstate-layout N4IgpgJg5mDOIC5QBcBOBDAZpglgYwBkcoALZAOilTDADsBiAOQFEANAFUVAAcB7WHMhy9aXEAA9EAWgBMc8gA4ADAHZlAZgUylAVnUA2AJw6ANCACe0gIz7yOm0qUAWGU7VKZKpwF9vZtFi4hMRk5OZgADYRvADuTGycSCB8AkIiYpII+lbkhgoKOqoK7uqGxk5mlgiyMnZWCtkqXoZOVk4uOr7+GNj4RKQU1BDxHGIpgsKiSZlG5LotnmouVkoFlYhWVuq5Ngotzu3q7fpdIAG9wQPk3ACuqNwRYCOJPPwT6dPS6jI5hjI6ZQUVh0rScCnU6wQKlseh09gUrXqOhk+hkvj8IFovAgcDE5yC-VCVBoU1eqUmGS+BjscMMun+hWyVkhNTqDSsTScLTapROGPxfRCFHCUViYzeaVJEmkhhUuX0QPUzh0QNaRhZ8nhjWaoI6pwFl1CQ3F5I+oEyHLlIIVcic2ThQJkGtqWstXNBBgU+p6BKF1zuDzAJveUsyUj+uU8bi0TiU+iU6mBkJWcsMbRkyhBGbkQO9gUFA2Dksp1QMShpAPpcLjmxZLTscbTmk0+iOTnU6O8QA */
   createMachine({
     schema: { events: {} as { type: 'eventType' } },
     id: 'trafficLight',
@@ -23,6 +23,13 @@ const trafficLightMachine =
         },
       },
       red: {
+        on: {
+          NEXT: {
+            target: 'purple',
+          },
+        },
+      },
+      purple: {
         on: {
           NEXT: {
             target: 'green',
